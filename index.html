@@ -1,5 +1,9 @@
 <html ng-app="myApp">
 	<head>
+		<!-- Ze jQuery -->
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
@@ -35,32 +39,11 @@
 			</footer>
 		</div>
 
+		<!-- ui-router -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
 
-		<script>
-			var myApp = angular.module("myApp", ["firebase"]);
-
-			myApp.controller('MyController', ['$scope', '$firebase',
-				function($scope, $firebase) {
-					var ref = new Firebase("https://playwithfire.firebaseIO.com/");
-					$scope.messages = $firebase(ref).$asArray();
-
-					//ADD MESSAGE METHOD
-					$scope.addMessage = function(e) {
-
-						//LISTEN FOR RETURN KEY
-						if (e.keyCode === 13 && $scope.msg) {
-							//ALLOW CUSTOM OR ANONYMOUS USER NAMES
-							var name = $scope.name || 'anonymous';
-
-							// add msg
-							$scope.messages.$add({from: name, body: $scope.msg});
-
-							//RESET MESSAGE
-							$scope.msg = "";
-						}
-					}
-				}
-			]);
-		</script>
+		<!-- my AngularJS files -->
+		<script src="scripts/app.js"></script>
+		<script src="scripts/controllers.js"></script>
 	</body>
 </html>
