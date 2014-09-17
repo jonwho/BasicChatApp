@@ -2,5 +2,5 @@
 
  angular.module('myApp', [
  		'ui.router',
- 		'myApp.controllers'
+ 		'firebase'
  	]);

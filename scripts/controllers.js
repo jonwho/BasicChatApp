@@ -1,5 +1,5 @@
-angular.module('myApp.controllers', ["firebase"])
-	.controller('MyController', ['$scope', '$firebase', function($scope, $firebase) {
+angular.module('myApp')
+	.controller('MyController', function($scope, $firebase) {
 		var ref = new Firebase("https://playwithfire.firebaseIO.com/");
 		$scope.messages = $firebase(ref).$asArray();
 
@@ -18,4 +18,4 @@ angular.module('myApp.controllers', ["firebase"])
 				$scope.msg = "";
 			}
 		}
-	}]);
+	});
