@@ -19,8 +19,11 @@
 	</head>
 	<body ng-controller="MyController">
 		<!-- CHAT MARKUP -->
-		<div class="jumbotron">
-			<header>Firebase Chat Demo</header>
+		<tabset justified="true">
+			<tab heading="tab1">
+			<!-- tab1 content goes here -->
+			Tab 1
+			</tab>
 
 			<div>
 				<label for="nameInput">Username:</label>
@@ -37,7 +40,7 @@
 			<footer>
 				<input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput"  placeholder="Type a message...">
 			</footer>
-		</div>
+		</tabset>
 
 		<!-- ui-router -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
