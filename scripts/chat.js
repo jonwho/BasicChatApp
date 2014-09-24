@@ -4,8 +4,11 @@
 
 angular.module('myApp')
     .controller('ChatController', function($scope, $firebase) {
-        var ref = new Firebase('https://playwithfire.firebaseIO.com/defaultroom');
-        $scope.messages = $firebase(ref).$asArray();
+        var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
+        
+        var newRoomRef = ref.push();
+        
+        $scope.messages = $firebase(newRoomRef).$asArray();
         
         $scope.addMessage = function (e) {
             if (e.keyCode === 13 && $scope.msg) {
