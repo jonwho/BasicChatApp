@@ -17,10 +17,10 @@
 		<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
 		<script src='https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js'></script>
 	</head>
-	<body ng-controller="MyController">
+	<body>
 		<!-- CHAT MARKUP -->
 		<tabset justified="true">
-			<tab heading="tab1">
+			<tab heading="tab1" ng-controller="MyController">
 				<div>
 					<label for="nameInput">Username:</label>
 					<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
