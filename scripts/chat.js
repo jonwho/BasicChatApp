@@ -4,7 +4,7 @@
 
 angular.module('myApp')
     .controller('ChatController', function($scope, $firebase) {
-        var ref = new Firebase('https://playwithfire.firebaseIO.com/');
+        var ref = new Firebase('https://playwithfire.firebaseIO.com/defaultroom');
         $scope.messages = $firebase(ref).$asArray();
         
         $scope.addMessage = function (e) {
