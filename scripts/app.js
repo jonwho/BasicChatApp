@@ -2,6 +2,6 @@
 
  angular.module('myApp', [
  		'ui.router',
- 		//'ui.bootstrap',
+ 		'ui.bootstrap',
  		'firebase'
  	]);
