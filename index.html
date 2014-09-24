@@ -20,7 +20,7 @@
 	<body>
 		<!-- CHAT MARKUP -->
 		<tabset justified="true">
-			<tab heading="tab1" ng-controller="MyController">
+			<tab heading="tab1" ng-controller="ChatController">
 				<div>
 					<label for="nameInput">Username:</label>
 					<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
@@ -41,8 +41,6 @@
 			<tab heading="tab2">
 				tab2
 			</tab>
-
-			
 		</tabset>
 
 		<!-- ui-router -->
@@ -54,5 +52,6 @@
 		<!-- my AngularJS files -->
 		<script src="scripts/app.js"></script>
 		<script src="scripts/controllers.js"></script>
+		<script src="scripts/chat.js"></script>
 	</body>
 </html>
