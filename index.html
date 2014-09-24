@@ -21,23 +21,21 @@
 		<!-- CHAT MARKUP -->
 		<tabset justified="true">
 			<tab heading="tab1">
-			<!-- tab1 content goes here -->
-			Tab 1
-			<div>
-				<label for="nameInput">Username:</label>
-				<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
-			</div>
-
-			<ul>
-				<li ng-repeat="msg in messages">
-					<strong>{{msg.from}}</strong>
-					{{msg.body}}
-				</li>
-			</ul>
-
-			<footer>
-				<input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput"  placeholder="Type a message...">
-			</footer>
+				<div>
+					<label for="nameInput">Username:</label>
+					<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
+				</div>
+	
+				<ul>
+					<li ng-repeat="msg in messages">
+						<strong>{{msg.from}}</strong>
+						{{msg.body}}
+					</li>
+				</ul>
+	
+				<footer>
+					<input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput"  placeholder="Type a message...">
+				</footer>
 			</tab>
 			
 			<tab heading="tab2">
