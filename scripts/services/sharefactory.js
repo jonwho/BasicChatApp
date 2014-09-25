@@ -9,8 +9,8 @@ angular.module('myApp')
        sharing.roomList = [];
 
        // remove later
-       sharing.roomList.push(0);
-       sharing.roomList.push(1);
+       sharing.roomList.push('0');
+       sharing.roomList.push('1');
 
        return sharing;
     });
