@@ -6,7 +6,9 @@ angular.module('myApp')
     .controller('DemoController', function($scope, $firebase) {
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
         
-        $scope.messages = $firebase(ref).$asArray();
+        var newRoomRef = ref.child('demo');
+
+        $scope.messages = $firebase(newRoomRef).$asArray();
         
         $scope.addMessage = function (e) {
             if (e.keyCode === 13 && $scope.msg) {
