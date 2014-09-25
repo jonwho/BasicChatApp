@@ -43,8 +43,8 @@
 			</tab>
 		</tabset>
 
-		<footer>
-			<button class="btn btn-primary" ng-click="">Add or Join Room</button>
+		<footer ng-controller="ModalController">
+			<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
 		</footer>
 
 		<!-- ui-router -->
@@ -54,10 +54,17 @@
 		<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
 		<!-- my AngularJS files -->
+
+		<!-- app configuration -->
 		<script src="scripts/app.js"></script>
+
+		<!-- controllers -->
 		<script src="scripts/controllers/demo.js"></script>
 		<script src="scripts/controllers/chat.js"></script>
 		<script src="scripts/controllers/room.js"></script>
+		<script src="scripts/controllers/modal.js"></script>
+
+		<!-- services -->
 		<script src="scripts/services/chatfactory.js"></script>
 		<script src="scripts/services/sharefactory.js"></script>
 	</body>
