@@ -6,7 +6,7 @@ angular.module('myApp')
     .controller('ChatController', function($scope, $firebase) {
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
         
-        var newRoomRef = ref.push();
+        var newRoomRef = ref.push('roomname');
         
         $scope.messages = $firebase(newRoomRef).$asArray();
         
