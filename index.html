@@ -17,10 +17,10 @@
 		<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
 		<script src='https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js'></script>
 	</head>
-	<body>
+	<body ng-controller="RoomController">
 		<!-- CHAT MARKUP -->
 		<tabset justified="true">
-			<tab heading="tab1" ng-controller="ChatController">
+			<tab heading="Demo" ng-controller="DemoController">
 				<div>
 					<label for="nameInput">Username:</label>
 					<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
@@ -33,15 +33,19 @@
 					</li>
 				</ul>
 	
-				<footer>
+				<div>
 					<input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput"  placeholder="Type a message...">
-				</footer>
+				</div>
 			</tab>
 			
-			<tab heading="tab2">
-				tab2
+			<tab heading="{{$index}}" ng-repeat="room in roomList">
+				{{$index}}
 			</tab>
 		</tabset>
+
+		<footer>
+			<button class="btn btn-primary" ng-click="">Add or Join Room</button>
+		</footer>
 
 		<!-- ui-router -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
@@ -51,7 +55,9 @@
 
 		<!-- my AngularJS files -->
 		<script src="scripts/app.js"></script>
+		<script src="scripts/demo.js"></script>
 		<script src="scripts/chat.js"></script>
+		<script src="scripts/room.js"></script>
 		<script src="scripts/chatfactory.js"></script>
 		<script src="scripts/sharefactory.js"></script>
 	</body>

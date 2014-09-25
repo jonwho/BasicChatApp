@@ -1,22 +1,12 @@
-// handle single chat instance
+// demo that everyone uses first by default
 
 'use strict';
 
 angular.module('myApp')
-    .controller('ChatController', function($scope, $firebase, ShareFactory) {
-        // get a parent ref
+    .controller('DemoController', function($scope, $firebase) {
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
         
-        // make new child ref
-        var newRoomRef = ref.push();
-
-        // get the endpoint name
-        var roomId = newRoomRef.name();
-
-        ShareFactory.roomList.push(roomId);
-        
-        // hold messages for this room
-        $scope.messages = $firebase(newRoomRef).$asArray();
+        $scope.messages = $firebase(ref).$asArray();
         
         $scope.addMessage = function (e) {
             if (e.keyCode === 13 && $scope.msg) {
