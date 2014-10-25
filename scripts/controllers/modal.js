@@ -11,7 +11,7 @@ angular.module('myApp')
 			});
 			
 			modalInstance.result.then(function (roomName) {
-				var isValid = ChatFactory.validRoom(roomName);
+				var isValid = ChatFactory.checkRoom(roomName);
 
 				// if not valid then make the room
 				ChatFactory.makeRoom(isValid, roomName);

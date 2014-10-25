@@ -11,7 +11,7 @@ angular.module('myApp')
 
 		// return true if room exists
 		// return false if room does not exist
-		chatAPI.validRoom = function (roomName) {
+		chatAPI.checkRoom = function (roomName) {
 			// check if the room name exists
 			ref.child(roomName).once('value', function(snapshot) {
 				if(snapshot.val() === null) {
@@ -31,4 +31,6 @@ angular.module('myApp')
 				ref.push(roomName);
 			}
 		};
+
+		return chatAPI;
 	});
