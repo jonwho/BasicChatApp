@@ -23,7 +23,7 @@
 	<body ng-controller="RoomController">
 		<!-- CHAT MARKUP -->
 		<tabset justified="true">
-			<tab heading="Demo" ng-controller="DemoController">
+			<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
 				<div>
 					<label for="nameInput">Username:</label>
 					<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
@@ -37,12 +37,8 @@
 				</ul>
 	
 				<div>
-					<input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput"  placeholder="Type a message...">
+					<input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput" placeholder="Type a message...">
 				</div>
-			</tab>
-			
-			<tab heading="{{room}}" ng-repeat="room in roomList">
-				{{room}}
 			</tab>
 		</tabset>
 
@@ -64,7 +60,6 @@
 		<script src="scripts/app.js"></script>
 
 		<!-- controllers -->
-		<script src="scripts/controllers/demo.js"></script>
 		<script src="scripts/controllers/chat.js"></script>
 		<script src="scripts/controllers/room.js"></script>
 		<script src="scripts/controllers/modal.js"></script>

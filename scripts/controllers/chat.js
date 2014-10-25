@@ -4,16 +4,13 @@
 
 angular.module('myApp')
     .controller('ChatController', function($scope, $firebase, ShareFactory) {
+        console.log('roomName: ' + $scope.room.roomName);
+
         // get a parent ref
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
         
-        // make new child ref
-        var newRoomRef = ref.push();
-
-        // get the endpoint name
-        var roomId = newRoomRef.name();
-
-        ShareFactory.roomList.push(roomId);
+        // get the room ref
+        var newRoomRef = ref.child($scope.room.roomName);
         
         // hold messages for this room
         $scope.messages = $firebase(newRoomRef).$asArray();
