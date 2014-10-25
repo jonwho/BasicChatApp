@@ -3,8 +3,32 @@
 'use strict';
 
 angular.module('myApp')
-    .factory('ChatFactory', function($scope, $firebase) {
-        var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
+	.factory('ChatFactory', function($firebase) {
+		// add properties to chatAPI
+		var chatAPI = {};
 
-        // check if the room name exists, if not make that room with the room name
-    });
+		var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
+
+		// return true if room exists
+		// return false if room does not exist
+		chatAPI.validRoom = function (roomName) {
+			// check if the room name exists
+			ref.child(roomName).once('value', function(snapshot) {
+				if(snapshot.val() === null) {
+					// no such room exists
+					return false;
+				}
+				else {
+					// room exists
+					return true;
+				}
+			});
+		};
+
+		// if room does not exist then make the room
+		chatAPI.makeRoom = function (validRoom, roomName) {
+			if(!validRoom) {
+				ref.push(roomName);
+			}
+		};
+	});

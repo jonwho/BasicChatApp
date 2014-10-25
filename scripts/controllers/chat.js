@@ -11,10 +11,10 @@ angular.module('myApp')
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
         
         // get the room ref
-        var newRoomRef = ref.child($scope.room.roomName);
+        var roomRef = ref.child($scope.room.roomName);
         
         // hold messages for this room
-        $scope.messages = $firebase(newRoomRef).$asArray();
+        $scope.messages = $firebase(roomRef).$asArray();
         
         $scope.addMessage = function (e) {
             if (e.keyCode === 13 && $scope.msg) {
