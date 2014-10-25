@@ -23,7 +23,7 @@
 	<body ng-controller="RoomController">
 		<!-- CHAT MARKUP -->
 		<tabset justified="true">
-			<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
+			<tab heading="{{room.roomName}}" ng-repeat="room in roomList" ng-controller="ChatController">
 				<div>
 					<label for="nameInput">Username:</label>
 					<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">

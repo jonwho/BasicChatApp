@@ -5,6 +5,7 @@
 angular.module('myApp')
     .controller('ChatController', function($scope, $firebase, ShareFactory) {
         console.log('roomName: ' + $scope.room.roomName);
+        console.log('roomIndex: ' + $scope.$index);
 
         // get a parent ref
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
