@@ -10,15 +10,17 @@ angular.module('myApp')
 				controller: 'ModalInstanceController',
 			});
 			
-			modalInstance.result.then(function (roomName) {
-				var isValid = ChatFactory.checkRoom(roomName);
+			modalInstance.result.then(function (name) {
+				// looks like don't need this
+				//var isValid = ChatFactory.checkRoom(name);
 
 				// if not valid then make the room
-				ChatFactory.makeRoom(isValid, roomName);
+				// may be don't need this method
+				// ChatFactory.makeRoom(isValid, name);
 
-				// room exists but not in roomList then add it to list
-				if(ShareFactory.roomList.indexOf(roomName) === -1 && isValid) {
-					ShareFactory.roomList.push(roomName);
+				// not in roomList then add it to list
+				if(ShareFactory.roomList.indexOf(name) === -1) {
+					ShareFactory.roomList.push({ roomName : name, active : true });
 				}
 				// room in list so redirect to it
 				else {

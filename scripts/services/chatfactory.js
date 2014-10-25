@@ -26,9 +26,10 @@ angular.module('myApp')
 		};
 
 		// if room does not exist then make the room
+		// no using this method right now
 		chatAPI.makeRoom = function (validRoom, roomName) {
 			if(!validRoom) {
-				ref.push(roomName);
+				ref.child(roomName);
 			}
 		};
 
