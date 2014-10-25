@@ -4,7 +4,10 @@
 
 <div class="modal-body">
 	<label>Add or Join Room</label>
-	<input type="text" ng-model="roomName" required>
+	<!-- Need . to force AngularJS to look up the prototype chain  -->
+	<!-- Was getting undefined value before because was looking at parent scope
+	and not this child scope of the modal service -->
+	<input type="text" ng-model="data.roomName" required/>
 </div>
 
 <div class="modal-footer">

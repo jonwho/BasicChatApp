@@ -10,6 +10,9 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
+		<!-- Overwrite Bootstrap 3 modal CSS -->
+		<link rel="stylesheet" href="styles/modal.css">
+
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		
@@ -38,12 +41,13 @@
 				</div>
 			</tab>
 			
-			<tab heading="{{$index}}" ng-repeat="room in roomList">
-				{{$index}}
+			<tab heading="{{room}}" ng-repeat="room in roomList">
+				{{room}}
 			</tab>
 		</tabset>
 
 		<hr>
+		<!-- Modal to add or join room -->
 		<footer ng-controller="ModalController">
 			<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
 		</footer>

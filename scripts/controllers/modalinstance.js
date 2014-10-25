@@ -4,11 +4,15 @@
 
 angular.module('myApp')
     .controller('ModalInstanceController', function($scope, $modalInstance) {
+    	$scope.data = {
+    		roomName: ""
+    	};
+    	console.log($scope.data.roomName);
         $scope.ok = function () {
-            $modalInstance.close($scope.roomName);
+            $modalInstance.close($scope.data.roomName);
         };
         
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $modalInstance.dismiss();
         };
     });

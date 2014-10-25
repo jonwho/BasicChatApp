@@ -7,12 +7,17 @@ angular.module('myApp')
 		$scope.open = function () {
 			var modalInstance = $modal.open({
 				templateUrl: 'views/modal.html',
-				controller: 'ModalInstanceController'
+				controller: 'ModalInstanceController',
 			});
 			
 			modalInstance.result.then(function (roomName) {
-				console.log('success');
-				ShareFactory.roomList.push(roomName);
+				if(ShareFactory.roomList.indexOf(roomName) === -1) {
+					ShareFactory.roomList.push(roomName);
+				}
+				else {
+					// redirect to join room, which means set current tab.active to false
+					// and new tab.active to true
+				}
 			}, function () {
 				console.log('cancel');
 			});
