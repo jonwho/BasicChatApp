@@ -16,10 +16,10 @@ angular.module('myApp')
         var typeSync = $firebase(usersTypingRef);
         var typeSyncObject = typeSync.$asObject();
 
-        // sync to a scope var $scope.users
-        typeSyncObject.$bindTo($scope, "users").then(function() {
-            $scope.users.list = [];
-        });
+        //$scope.hashSet = ShareFactory.HashSet;
+
+        // sync to a scope var $scope.hashSet
+        typeSyncObject.$bindTo($scope, "hashSet.set");
         
         // hold messages for this room
         $scope.messages = $firebase(roomRef).$asArray();
@@ -34,30 +34,18 @@ angular.module('myApp')
             }
         }
 
-        // called with ng-change so when msg value is changed this method is called
-        $scope.updateTypeChange = function () {
-            var name = $scope.name || 'anonymous';
-            if($scope.msg.length >= 1) {
-                $scope.users.list.push({user : name});
-            }
-            else {
-                var index = $scope.users.list.indexOf(name);
-                $scope.users.list.splice(index, 1);
-            }
-        }
-
         // listen for change on $scope.msg
-        $scope.$watch('msg', function(newVal, oldVal) {
-            var name = $scope.name || 'anonymous';
-            if($scope.msg === undefined) {
-                // do nothing
-            }
-            else if($scope.msg.length >= 1) {
-                $scope.users.list.push({user : name});
-            }
-            else {
-                var index = $scope.users.list.indexOf(name);
-                $scope.users.list.splice(index, 1);
-            }
-        });  
+        // $scope.$watch('msg', function(newVal, oldVal) {
+        //     var name = $scope.name || 'anonymous';
+        //     $scope.hashSet = HashSetFactory;
+        //     if($scope.msg === undefined) {
+        //         // do nothing
+        //     }
+        //     else if($scope.msg.length >= 1) {
+        //         $scope.hashSet.add(name);
+        //     }
+        //     else {
+        //         $scope.hashSet.remove(name);
+        //     }
+        // });  
     });
