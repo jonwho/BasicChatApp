@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('myApp')
-    .controller('ChatController', function($scope, $firebase, ShareFactory) {
+    .controller('ChatController', function($scope, $firebase, ShareFactory, HashSetFactory) {
 
         // get a parent ref
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
@@ -15,8 +15,11 @@ angular.module('myApp')
         var usersTypingRef = roomRef.child('/users');
         var typeSync = $firebase(usersTypingRef);
         var typeSyncObject = typeSync.$asObject();
+
         // sync to a scope var $scope.users
-        typeSyncObject.$bindTo($scope, "users");
+        typeSyncObject.$bindTo($scope, "users").then(function() {
+            $scope.users.list = [];
+        });
         
         // hold messages for this room
         $scope.messages = $firebase(roomRef).$asArray();
@@ -33,11 +36,28 @@ angular.module('myApp')
 
         // called with ng-change so when msg value is changed this method is called
         $scope.updateTypeChange = function () {
-            if($scope.users === null || $scope.users === undefined)
-                $scope.users = 0;
-            if($scope.msg.length >= 1)
-                $scope.users += 1;
-            else
-                $scope.users -= 1;
-        }    
+            var name = $scope.name || 'anonymous';
+            if($scope.msg.length >= 1) {
+                $scope.users.list.push({user : name});
+            }
+            else {
+                var index = $scope.users.list.indexOf(name);
+                $scope.users.list.splice(index, 1);
+            }
+        }
+
+        // listen for change on $scope.msg
+        $scope.$watch('msg', function(newVal, oldVal) {
+            var name = $scope.name || 'anonymous';
+            if($scope.msg === undefined) {
+                // do nothing
+            }
+            else if($scope.msg.length >= 1) {
+                $scope.users.list.push({user : name});
+            }
+            else {
+                var index = $scope.users.list.indexOf(name);
+                $scope.users.list.splice(index, 1);
+            }
+        });  
     });
