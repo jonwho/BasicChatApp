@@ -37,7 +37,21 @@
 				</ul>
 	
 				<div>
-					<input ng-model="msg" ng-keydown="addMessage($event)" type="text" id="messageInput" placeholder="Type a message...">
+					<input ng-model="msg"
+						   ng-change="updateTypeCount()"
+						   ng-keydown="addMessage($event)" 
+						   type="text" 
+						   id="messageInput" 
+						   placeholder="Type a message...">
+
+					<!-- Show who is typing or how many people are typing -->
+					<br><br>
+					<div class="row" ng-if="users == 1">
+						<p class="bg-success col-xs-6 col-sm-4">name is typing ...</p>
+					</div>
+					<div class="row" ng-if="users >= 2">
+						<p class="bg-success col-xs-6 col-sm-4">2 or more people are typing ...</p>
+					</div>
 				</div>
 			</tab>
 		</tabset>
