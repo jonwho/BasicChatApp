@@ -11,10 +11,24 @@ angular.module('myApp')
 			});
 			
 			modalInstance.result.then(function (name) {
-				// not in roomList then add it to list
-				if(ShareFactory.roomList.indexOf(name) === -1) {
-					ShareFactory.roomList.push({ roomName : name, active : true });
+				var found = false;
+				var length = ShareFactory.roomList.length;
+				var index = 0;
+
+				for(var i = 0; i < length; ++i) {
+					if(ShareFactory.roomList[i].roomName === name) {
+						found = true;
+						index = i;
+						console.log('index ' + index);
+					}
 				}
+
+				if(!found)
+					ShareFactory.roomList.push({ roomName : name, active : true });
+				else {
+					ShareFactory.roomList[index].active = true;
+				}
+
 			}, function () {
 				console.log('cancel');
 			});
