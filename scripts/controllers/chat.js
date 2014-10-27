@@ -24,10 +24,22 @@ angular.module('myApp')
         // hold messages for this room
         $scope.messages = $firebase(roomRef).$asArray();
         
+        // for keyboard input
         $scope.addMessage = function (e) {
             if (e.keyCode === 13 && $scope.msg) {
                 var name = $scope.name || 'anonymous';
                 
+                $scope.messages.$add({from: name, body: $scope.msg});
+                
+                $scope.msg = '';
+            }
+        }
+
+        // for mouse input
+        $scope.addMessage = function () {
+            if ($scope.msg) {
+                var name = $scope.name || 'anonymous';
+
                 $scope.messages.$add({from: name, body: $scope.msg});
                 
                 $scope.msg = '';

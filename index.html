@@ -24,25 +24,30 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<tabset justified="true">
+					<!-- Tabs -->
 					<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
+						<!-- Assign username -->
 						<div>
 							<label for="nameInput">Username:</label>
 							<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
 						</div>
-			
+
+						<!-- Display messages -->
 						<ul>
 							<li ng-repeat="msg in messages">
 								<strong>{{msg.from}}</strong>
 								{{msg.body}}
 							</li>
 						</ul>
-			
+						
+						<!-- Post a message -->
 						<div>
 							<input ng-model="msg"
 								   ng-keydown="addMessage($event)" 
 								   type="text" 
 								   id="messageInput" 
 								   placeholder="Type a message...">
+							<button class="btn btn-primary" ng-click="addMessage()">Send</button>
 
 							<!-- Show who is typing or how many people are typing -->
 							<!-- <br><br>
