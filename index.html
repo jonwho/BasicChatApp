@@ -12,6 +12,8 @@
 
 		<!-- Overwrite Bootstrap 3 modal CSS -->
 		<link rel="stylesheet" href="styles/modal.css">
+		<!-- Chat CSS -->
+		<link rel="stylesheet" href="styles/chat.css">
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -26,27 +28,29 @@
 				<tabset justified="true">
 					<!-- Tabs -->
 					<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
+						<!-- Display messages -->
+						<ul>
+							<div class="bubble" ng-repeat="msg in messages">
+								<strong>{{msg.from}}</strong>
+								{{msg.body}}
+							</div>
+						</ul>
+
 						<!-- Assign username -->
 						<div>
 							<label for="nameInput">Username:</label>
 							<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
 						</div>
 
-						<!-- Display messages -->
-						<ul>
-							<li ng-repeat="msg in messages">
-								<strong>{{msg.from}}</strong>
-								{{msg.body}}
-							</li>
-						</ul>
-						
 						<!-- Post a message -->
 						<div>
-							<input ng-model="msg"
-								   ng-keydown="addMessage($event)" 
-								   type="text" 
-								   id="messageInput" 
-								   placeholder="Type a message...">
+							<textarea class="form-control" 
+									  ng-model="msg"
+									  ng-keydown="addMessage($event)" 
+									  type="text" 
+									  id="messageInput" 
+									  placeholder="Type a message...">
+							</textarea>
 							<button class="btn btn-primary" ng-click="sendMessage()">Send</button>
 
 							<!-- Show who is typing or how many people are typing -->
