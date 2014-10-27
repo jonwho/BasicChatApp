@@ -21,45 +21,47 @@
 		<script src='https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js'></script>
 	</head>
 	<body ng-controller="RoomController">
-		<!-- CHAT MARKUP -->
-		<tabset justified="true">
-			<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
-				<div>
-					<label for="nameInput">Username:</label>
-					<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
-				</div>
-	
-				<ul>
-					<li ng-repeat="msg in messages">
-						<strong>{{msg.from}}</strong>
-						{{msg.body}}
-					</li>
-				</ul>
-	
-				<div>
-					<input ng-model="msg"
-						   ng-keydown="addMessage($event)" 
-						   type="text" 
-						   id="messageInput" 
-						   placeholder="Type a message...">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<tabset justified="true">
+					<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
+						<div>
+							<label for="nameInput">Username:</label>
+							<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
+						</div>
+			
+						<ul>
+							<li ng-repeat="msg in messages">
+								<strong>{{msg.from}}</strong>
+								{{msg.body}}
+							</li>
+						</ul>
+			
+						<div>
+							<input ng-model="msg"
+								   ng-keydown="addMessage($event)" 
+								   type="text" 
+								   id="messageInput" 
+								   placeholder="Type a message...">
 
-					<!-- Show who is typing or how many people are typing -->
-					<!-- <br><br>
-					<div class="row" ng-if="hashSet.size() == 1">
-						<p class="bg-success col-xs-6 col-sm-4">{{user}} is typing ...</p>
-					</div>
-					<div class="row" ng-if="hashSet.size() >= 2">
-						<p class="bg-success col-xs-6 col-sm-4">2 or more people are typing ...</p>
-					</div> -->
+							<!-- Show who is typing or how many people are typing -->
+							<!-- <br><br>
+							<div class="row" ng-if="hashSet.size() == 1">
+								<p class="bg-success col-xs-6 col-sm-4">{{user}} is typing ...</p>
+							</div>
+							<div class="row" ng-if="hashSet.size() >= 2">
+								<p class="bg-success col-xs-6 col-sm-4">2 or more people are typing ...</p>
+							</div> -->
+						</div>
+					</tab>
+				</tabset>
+				<hr>
+				<!-- Modal to add or join room -->
+				<div class="row-fluid" ng-controller="ModalController">
+					<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
 				</div>
-			</tab>
-		</tabset>
-
-		<hr>
-		<!-- Modal to add or join room -->
-		<footer ng-controller="ModalController">
-			<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
-		</footer>
+			</div><!--/row-->
+		</div><!--/container-->
 
 		<!-- ui-router -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
