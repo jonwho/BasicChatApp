@@ -37,7 +37,13 @@ angular.module('myApp')
 
         // for mouse input
         $scope.sendMessage = function () {
-            $scope.addMessage(13);
+            if ($scope.msg) {
+                var name = $scope.name || 'anonymous';
+                
+                $scope.messages.$add({from: name, body: $scope.msg});
+                
+                $scope.msg = '';
+            }
         }
 
         // listen for change on $scope.msg
