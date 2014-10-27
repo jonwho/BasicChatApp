@@ -37,13 +37,13 @@
 						</ul>
 
 						<!-- Assign username -->
-						<div>
+						<div class="align-fix">
 							<label for="nameInput">Username:</label>
 							<input ng-model="name" type="text" id="nameInput" placeholder="enter a username...">
 						</div>
 
 						<!-- Post a message -->
-						<div>
+						<div class="align-fix">
 							<textarea class="form-control" 
 									  ng-model="msg"
 									  ng-keydown="addMessage($event)" 
@@ -66,7 +66,7 @@
 				</tabset>
 				<hr>
 				<!-- Modal to add or join room -->
-				<div class="row-fluid" ng-controller="ModalController">
+				<div class="align-fix" ng-controller="ModalController">
 					<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
 				</div>
 			</div><!--/row-->

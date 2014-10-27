@@ -11,7 +11,8 @@
 	margin-bottom: 20px;
 	border: solid 1px rgba(0, 0, 0, 0.5);
 	word-wrap: break-word;
-	float: none;
+	float: left;
+	clear: both;
 
 	box-shadow: inset 0 5px 5px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
 	background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
@@ -31,4 +32,9 @@
 .form-control {
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.align-fix {
+	float: none;
+	clear: both;
 }
