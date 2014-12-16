@@ -7,7 +7,8 @@ angular.module('myApp')
 
 		// hold room ids
 		sharing.roomList = [
-			{roomName : 'Demo', active : true}
+			{roomName : 'Demo', active : true},
+			{roomName : 'Demo 2'}
 		];
 
 		sharing.HashSet = HashSetFactory;
