@@ -1,6 +1,7 @@
 Play around with AngularJS and Firebase.
 
-Following the tutorial for Chat App based off of AngularFire.
+Following the tutorial for Chat App based off of AngularFire. Then customizing
+the app to my liking.
 
 Play with it [here](https://playwithfire.firebaseapp.com)
 
