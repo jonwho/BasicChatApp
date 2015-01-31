@@ -21,6 +21,8 @@
 		<link rel="stylesheet" href="styles/modal.css">
 		<!-- Chat CSS -->
 		<link rel="stylesheet" href="styles/chat.css">
+		<!-- Scroll CSS -->
+		<link rel="stylesheet" href="styles/scroll.css">
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -36,12 +38,14 @@
 					<!-- Tabs -->
 					<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
 						<!-- Display messages -->
-						<ul>
-							<div class="bubble" ng-repeat="msg in messages">
-								<strong>{{msg.from}}</strong>
-								{{msg.body}}
-							</div>
-						</ul>
+						<div id="scrollArea" ng-controller="ScrollController">
+							<ul>
+								<div class="bubble" ng-repeat="msg in messages">
+									<strong>{{msg.from}}</strong>
+									{{msg.body}}
+								</div>
+							</ul>
+						</div>
 
 						<!-- Assign username -->
 						<div class="align-fix">
@@ -95,6 +99,7 @@
 		<script src="scripts/controllers/room.js"></script>
 		<script src="scripts/controllers/modal.js"></script>
 		<script src="scripts/controllers/modalinstance.js"></script>
+		<script src="scripts/controllers/scroll.js"></script>
 
 		<!-- services -->
 		<script src="scripts/services/chatfactory.js"></script>
