@@ -7,7 +7,7 @@ angular.module('myApp')
 		$scope.open = function () {
 			var modalInstance = $modal.open({
 				templateUrl: 'views/modal.html',
-				controller: 'ModalInstanceController',
+				controller: 'ModalInstanceController'
 			});
 			
 			modalInstance.result.then(function (name) {

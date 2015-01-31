@@ -83,6 +83,9 @@
 				<div class="align-fix" ng-controller="ModalController">
 					<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
 				</div>
+				<div ng-controller="HelpController" class="pull-right">
+					<a ng-click="open()">Need help?</a>
+				</div>
 			</div><!--/row-->
 		</div><!--/container-->
 
@@ -102,6 +105,7 @@
 		<script src="scripts/controllers/room.js"></script>
 		<script src="scripts/controllers/modal.js"></script>
 		<script src="scripts/controllers/modalinstance.js"></script>
+		<script src="scripts/controllers/help.js"></script>
 
 		<!-- services -->
 		<script src="scripts/services/chatfactory.js"></script>
