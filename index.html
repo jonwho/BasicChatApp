@@ -39,16 +39,20 @@
 	</head>
 	<body ng-controller="RoomController">
 		<md-content class="md-padding">
-				<!-- Tab Container -->
-				<md-tabs md-selected="selectedIndex">
-					<!-- Individual Tab -->
-					<md-tab ng-repeat="room in roomList"
-							ng-disabled="room.disabled" 
-							label="{{room.roomName}}"> 
+			<!-- Tab Container -->
+			<md-tabs md-selected="selectedIndex">
+				<!-- Individual Tab -->
+				<md-tab ng-repeat="room in roomList"
+						ng-disabled="room.disabled" 
+						label="{{room.roomName}}">
+
+					<!-- Made div within each tab to attach chat controller -->
+					<!-- Attaching chat controller to the md-tab made module conflict errors -->
+					<div ng-controller="ChatController">
 
 						<!-- Display messages -->
 						<div scroll-glue>
-						<md-list ng-controller="ChatController">
+							<md-list>
 								<md-item ng-repeat="msg in messages">
 									<md-item-content>
 										<div class="md-tile-content">
@@ -57,9 +61,9 @@
 										</div>
 									</md-item-content>
 								</md-item>
-						</md-list>
+							</md-list>
 						</div>
-						
+
 						<!-- Assign username -->
 						<md-input-container>
 							<label for="nameInput">Username</label>
@@ -72,23 +76,29 @@
 							<textarea class="form-control" 
 									  ng-model="msg"
 									  ng-keydown="addMessage($event)" 
-									  
 									  id="messageInput"
-									   
 									  placeholder="Type a message...">
 							</textarea>
 						</md-input-container>
-						<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
-					</md-tab>
-				</md-tabs>
-				<br>
-				<!-- Modal to add or join room -->
-				<div class="align-fix" ng-controller="ModalController">
-					<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
+					</div><!--/ChatController-->
+				</md-tab>
+			</md-tabs>
+			<div layout="row" layout-wrap layout-margin>
+				<!-- Click to send message -->
+				<div flex>
+					<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
 				</div>
-				<div ng-controller="HelpController" class="pull-right">
-					<md-button ng-click="open()" ng-href="">Need help?</md-button>
+				<div layout="row" layout-wrap layout-margin>
+					<!-- Modal to add or join room -->
+					<div flex="100" ng-controller="ModalController">
+						<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
+					</div>
+					<!-- Opens helper -->
+					<div flex="100" ng-controller="HelpController">
+						<md-button ng-click="open()" ng-href="">Need help?</md-button>
+					</div>
 				</div>
+			</div>
 		</md-content><!--/md-content-->
 
 		<!-- ui-router -->
