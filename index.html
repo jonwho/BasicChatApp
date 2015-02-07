@@ -45,17 +45,21 @@
 					<md-tab ng-repeat="room in roomList"
 							ng-disabled="room.disabled" 
 							label="{{room.roomName}}"> 
-							<!-- ng-controller="ChatController"> -->
+
 						<!-- Display messages -->
 						<div scroll-glue>
-							<ul>
-								<li class="bubble" ng-repeat="msg in messages">
-									<strong>{{msg.from}}</strong>
-									{{msg.body}}
-								</li>
-							</ul>
+						<md-list ng-controller="ChatController">
+								<md-item ng-repeat="msg in messages">
+									<md-item-content>
+										<div class="md-tile-content">
+											<h3><strong>{{msg.from}}</strong></h3>
+											<h4>{{msg.body}}</h4>
+										</div>
+									</md-item-content>
+								</md-item>
+						</md-list>
 						</div>
-
+						
 						<!-- Assign username -->
 						<md-input-container>
 							<label for="nameInput">Username</label>
