@@ -85,18 +85,16 @@
 			</md-tabs>
 			<div layout="row" layout-wrap layout-margin>
 				<!-- Click to send message -->
-				<div flex>
+				<div flex="100">
 					<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
 				</div>
-				<div layout="row" layout-wrap layout-margin>
-					<!-- Modal to add or join room -->
-					<div flex="100" ng-controller="ModalController">
-						<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
-					</div>
-					<!-- Opens helper -->
-					<div flex="100" ng-controller="HelpController">
-						<md-button ng-click="open()" ng-href="">Need help?</md-button>
-					</div>
+				<!-- Modal to add or join room -->
+				<div flex="100" ng-controller="ModalController">
+					<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
+				</div>
+				<!-- Opens helper -->
+				<div flex="100" ng-controller="HelpController">
+					<md-button ng-click="open()" ng-href="">Need help?</md-button>
 				</div>
 			</div>
 		</md-content><!--/md-content-->
