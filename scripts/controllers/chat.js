@@ -45,19 +45,4 @@ angular.module('myApp')
                 $scope.msg = '';
             }
         }
-
-        // listen for change on $scope.msg
-        // $scope.$watch('msg', function(newVal, oldVal) {
-        //     var name = $scope.name || 'anonymous';
-        //     $scope.hashSet = HashSetFactory;
-        //     if($scope.msg === undefined) {
-        //         // do nothing
-        //     }
-        //     else if($scope.msg.length >= 1) {
-        //         $scope.hashSet.add(name);
-        //     }
-        //     else {
-        //         $scope.hashSet.remove(name);
-        //     }
-        // });  
     });
