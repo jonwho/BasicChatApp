@@ -66,22 +66,28 @@
 							</md-list>
 						</div>
 
-						<!-- Assign username -->
-						<md-input-container>
-							<label for="nameInput">Username</label>
-							<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
-						</md-input-container>
+						<div layout="row" layout-wrap layout-margin>
+							<div flex="33">
+							<!-- Assign username -->
+							<md-input-container>
+								<label for="nameInput">Username</label>
+								<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+							</md-input-container>
+						</div>
 
-						<!-- Post a message -->
-						<md-input-container flex>
-							<label>Message</label>
-							<textarea class="form-control" 
-									  ng-model="msg"
-									  ng-keydown="addMessage($event)" 
-									  id="messageInput"
-									  placeholder="Type a message...">
-							</textarea>
-						</md-input-container>
+						<div flex="95">
+							<!-- Post a message -->
+							<md-input-container flex>
+								<label>Message</label>
+								<textarea class="form-control" 
+										  ng-model="msg"
+										  ng-keydown="addMessage($event)" 
+										  id="messageInput"
+										  placeholder="Type a message...">
+								</textarea>
+							</md-input-container>
+						</div>
+						</div><!--/username and message layout -->
 					</div><!--/ChatController-->
 				</md-tab>
 			</md-tabs>
