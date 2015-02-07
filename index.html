@@ -38,8 +38,7 @@
 		<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
 	</head>
 	<body ng-controller="RoomController">
-		<div class="container-fluid">
-			<div class="row-fluid">
+		<md-content class="md-padding">
 				<tabset justified="true">
 					<!-- Tabs -->
 					<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
@@ -54,43 +53,35 @@
 						</div>
 
 						<!-- Assign username -->
-						<div class="align-fix">
-							<label for="nameInput">Username:</label>
+						<md-input-container>
+							<label for="nameInput">Username</label>
 							<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
-						</div>
+						</md-input-container>
 
 						<!-- Post a message -->
-						<div class="align-fix">
+						<md-input-container flex>
+							<label>Message</label>
 							<textarea class="form-control" 
 									  ng-model="msg"
 									  ng-keydown="addMessage($event)" 
-									  type="text" 
-									  id="messageInput" 
+									  
+									  id="messageInput"
+									   
 									  placeholder="Type a message...">
 							</textarea>
-							<button class="btn btn-primary" ng-click="sendMessage()">Send</button>
-
-							<!-- Show who is typing or how many people are typing -->
-							<!-- <br><br>
-							<div class="row" ng-if="hashSet.size() == 1">
-								<p class="bg-success col-xs-6 col-sm-4">{{user}} is typing ...</p>
-							</div>
-							<div class="row" ng-if="hashSet.size() >= 2">
-								<p class="bg-success col-xs-6 col-sm-4">2 or more people are typing ...</p>
-							</div> -->
-						</div>
+						</md-input-container>
+						<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
 					</tab>
 				</tabset>
-				<hr>
+				<br>
 				<!-- Modal to add or join room -->
 				<div class="align-fix" ng-controller="ModalController">
-					<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
+					<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
 				</div>
 				<div ng-controller="HelpController" class="pull-right">
-					<a ng-click="open()">Need help?</a>
+					<md-button ng-click="open()" ng-href="">Need help?</md-button>
 				</div>
-			</div><!--/row-->
-		</div><!--/container-->
+		</md-content><!--/md-content-->
 
 		<!-- ui-router -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
