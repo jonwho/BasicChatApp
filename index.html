@@ -23,11 +23,16 @@
 		<link rel="stylesheet" href="styles/chat.css">
 		<!-- Scroll CSS -->
 		<link rel="stylesheet" href="styles/scroll.css">
+		<!-- Material Design CSS -->
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.css">
+		<!-- Overwrite MD CSS -->
+		<link rel="stylesheet" href="styles/md-custom.css">
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		
-		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js'></script>
+		<!-- Angular version 1.3.6 -->
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js'></script>
 		<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
 		<script src='https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js'></script>
 
@@ -35,65 +40,94 @@
 		<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
 	</head>
 	<body ng-controller="RoomController">
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<tabset justified="true">
-					<!-- Tabs -->
-					<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
+		<md-content>
+			<!-- Tab Container -->
+			<md-tabs md-selected="selectedIndex">
+				<!-- Individual Tab -->
+				<md-tab ng-repeat="room in roomList"
+						ng-disabled="room.disabled" 
+						label="{{room.roomName}}">
+
+					<!-- Made div within each tab to attach chat controller -->
+					<!-- Attaching chat controller to the md-tab made module conflict errors -->
+					<div ng-controller="ChatController">
+
 						<!-- Display messages -->
 						<div scroll-glue>
-							<ul>
-								<li class="bubble" ng-repeat="msg in messages">
-									<strong>{{msg.from}}</strong>
-									{{msg.body}}
-								</li>
-							</ul>
-						</div>
+							<md-list>
+								<md-item ng-repeat="msg in messages">
+									<md-item-content>
+										<div class="md-tile-content">
+											<!-- <h3><strong>{{msg.from}}</strong></h3>
+											<h4>{{msg.body}}</h4> -->
+											<!-- <div layout="column" layout-fill>
+												<md-whiteframe class="md-whiteframe-z3" layout>
+													<span><strong>{{msg.from}}</strong><br>{{msg.body}}</span>
+												</md-whiteframe>
+											</div> -->
+											<div class="bubble">
+												<strong>{{msg.from}}</strong><br>
+												{{msg.body}}
+											</div>
+										</div>
+									</md-item-content>
+								</md-item>
+							</md-list>
+						</div><!--/messages-->
 
-						<!-- Assign username -->
-						<div class="align-fix">
-							<label for="nameInput">Username:</label>
-							<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
-						</div>
-
-						<!-- Post a message -->
-						<div class="align-fix">
-							<textarea class="form-control" 
-									  ng-model="msg"
-									  ng-keydown="addMessage($event)" 
-									  type="text" 
-									  id="messageInput" 
-									  placeholder="Type a message...">
-							</textarea>
-							<button class="btn btn-primary" ng-click="sendMessage()">Send</button>
-
-							<!-- Show who is typing or how many people are typing -->
-							<!-- <br><br>
-							<div class="row" ng-if="hashSet.size() == 1">
-								<p class="bg-success col-xs-6 col-sm-4">{{user}} is typing ...</p>
+						<div layout="row" layout-margin>
+							<div flex="33">
+								<!-- Assign username -->
+								<md-input-container>
+									<label for="nameInput">Username</label>
+									<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+								</md-input-container>
 							</div>
-							<div class="row" ng-if="hashSet.size() >= 2">
-								<p class="bg-success col-xs-6 col-sm-4">2 or more people are typing ...</p>
-							</div> -->
-						</div>
-					</tab>
-				</tabset>
-				<hr>
+
+							<div flex="60">
+								<!-- Post a message -->
+								<md-input-container flex>
+									<label>Message</label>
+									<textarea class="form-control" 
+											  ng-model="msg"
+											  ng-keydown="addMessage($event)" 
+											  id="messageInput"
+											  placeholder="Type a message...">
+									</textarea>
+								</md-input-container>
+							</div>
+						</div><!--/username and post layout -->
+					</div><!--/ChatController-->
+				</md-tab>
+			</md-tabs>
+			<div layout="row" layout-wrap layout-margin layout-padding>
+				<!-- Click to send message -->
+				<div flex>
+					<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
+				</div>
 				<!-- Modal to add or join room -->
-				<div class="align-fix" ng-controller="ModalController">
-					<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
+				<div flex class="text-center" ng-controller="ModalController">
+					<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
 				</div>
-				<div ng-controller="HelpController" class="pull-right">
-					<a ng-click="open()">Need help?</a>
+				<!-- Opens helper -->
+				<div flex ng-controller="HelpController">
+					<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
 				</div>
-			</div><!--/row-->
-		</div><!--/container-->
+			</div>
+		</md-content><!--/md-content-->
 
 		<!-- ui-router -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
 
 		<!-- angular-ui -->
 		<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+		<!-- Angular Material Dependencies -->
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
+
+		<!-- Angular Material Javascript -->
+		<script src="//ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.js"></script>
 
 		<!-- my AngularJS files -->
 

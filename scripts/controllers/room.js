@@ -5,4 +5,6 @@
 angular.module('myApp')
     .controller('RoomController', function($scope, ShareFactory) {
         $scope.roomList = ShareFactory.roomList;
+
+        $scope.selectedIndex = 0;
     });

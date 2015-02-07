@@ -24,9 +24,9 @@ angular.module('myApp')
 				}
 
 				if(!found)
-					ShareFactory.roomList.push({ roomName : name, active : true });
+					ShareFactory.roomList.push({ roomName : name, disabled : false });
 				else {
-					ShareFactory.roomList[index].active = true;
+					ShareFactory.roomList[index].disabled = false;
 				}
 
 			}, function () {
