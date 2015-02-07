@@ -39,9 +39,13 @@
 	</head>
 	<body ng-controller="RoomController">
 		<md-content class="md-padding">
-				<tabset justified="true">
-					<!-- Tabs -->
-					<tab heading="{{room.roomName}}" ng-repeat="room in roomList" active="room.active" ng-controller="ChatController">
+				<!-- Tab Container -->
+				<md-tabs md-selected="selectedIndex">
+					<!-- Individual Tab -->
+					<md-tab ng-repeat="room in roomList"
+							ng-disabled="room.disabled" 
+							label="{{room.roomName}}"> 
+							<!-- ng-controller="ChatController"> -->
 						<!-- Display messages -->
 						<div scroll-glue>
 							<ul>
@@ -71,8 +75,8 @@
 							</textarea>
 						</md-input-container>
 						<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
-					</tab>
-				</tabset>
+					</md-tab>
+				</md-tabs>
 				<br>
 				<!-- Modal to add or join room -->
 				<div class="align-fix" ng-controller="ModalController">
