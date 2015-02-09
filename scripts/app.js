@@ -4,6 +4,7 @@
  		'ngMaterial',
  		'ngAnimate',
  		'ngAria',
+ 		'ngTouch',
  		'ui.router',
  		'ui.bootstrap',
  		'firebase',
