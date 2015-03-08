@@ -39,10 +39,11 @@
 		<!-- Scrollglue -->
 		<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
 	</head>
-	<body ng-controller="RoomController">
-		<md-content>
+	<body layout="layout-fill" ng-controller="RoomController">
+		<md-content flex>
 			<!-- Tab Container -->
-			<md-tabs md-selected="selectedIndex">
+			<!-- md-stretch-tabs makes the tab use all of the available space -->
+			<md-tabs md-stretch-tabs md-selected="selectedIndex">
 				<!-- Individual Tab -->
 				<md-tab ng-repeat="room in roomList"
 						ng-disabled="room.disabled" 
@@ -68,7 +69,7 @@
 							</md-list>
 						</div><!--/messages-->
 
-						<div layout="row" layout-margin>
+						<div layout="row" layout-margin layout-wrap>
 							<div flex="33">
 								<!-- Assign username -->
 								<md-input-container>
@@ -77,7 +78,7 @@
 								</md-input-container>
 							</div>
 
-							<div flex="60">
+							<div flex="66">
 								<!-- Post a message -->
 								<md-input-container flex>
 									<label>Message</label>
@@ -89,24 +90,24 @@
 									</textarea>
 								</md-input-container>
 							</div>
+
+							<!-- Click to send message -->
+							<div flex>
+								<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
+							</div>
+							<!-- Modal to add or join room -->
+							<div flex ng-controller="ModalController">
+								<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
+							</div>
+							<!-- Opens helper -->
+							<div flex ng-controller="HelpController">
+								<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
+							</div>
 						</div><!--/username and post layout -->
 					</div><!--/ChatController-->
 				</md-tab>
 			</md-tabs>
-			<div layout="row" layout-wrap layout-margin layout-padding>
-				<!-- Click to send message -->
-				<div flex="100">
-					<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
-				</div>
-				<!-- Modal to add or join room -->
-				<div flex ng-controller="ModalController">
-					<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
-				</div>
-				<!-- Opens helper -->
-				<div flex ng-controller="HelpController">
-					<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
-				</div>
-			</div>
+			
 		</md-content><!--/md-content-->
 
 
