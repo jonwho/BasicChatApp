@@ -39,20 +39,16 @@
 		<!-- Scrollglue -->
 		<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
 	</head>
-	<body layout="layout-fill" ng-controller="RoomController">
-		<md-content flex>
-			<!-- Tab Container -->
-			<!-- md-stretch-tabs makes the tab use all of the available space -->
+	<body>
+		<div layout="column" layout-fill ng-controller="RoomController">
+			<!-- Tabs Container -->
 			<md-tabs md-stretch-tabs md-selected="selectedIndex">
 				<!-- Individual Tab -->
 				<md-tab ng-repeat="room in roomList"
 						ng-disabled="room.disabled" 
 						label="{{room.roomName}}">
 
-					<!-- Made div within each tab to attach chat controller -->
-					<!-- Attaching chat controller to the md-tab made module conflict errors -->
 					<div ng-controller="ChatController">
-
 						<!-- Display messages -->
 						<div scroll-glue>
 							<md-list>
@@ -68,48 +64,46 @@
 								</md-item>
 							</md-list>
 						</div><!--/messages-->
-
-						<div layout="row" layout-margin layout-wrap>
-							<div flex="33">
-								<!-- Assign username -->
-								<md-input-container>
-									<label for="nameInput">Username</label>
-									<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
-								</md-input-container>
-							</div>
-
-							<div flex="66">
-								<!-- Post a message -->
-								<md-input-container flex>
-									<label>Message</label>
-									<textarea class="form-control" 
-											  ng-model="msg"
-											  ng-keydown="addMessage($event)" 
-											  id="messageInput"
-											  placeholder="Type a message...">
-									</textarea>
-								</md-input-container>
-							</div>
-
-							<!-- Click to send message -->
-							<div flex>
-								<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
-							</div>
-							<!-- Modal to add or join room -->
-							<div flex ng-controller="ModalController">
-								<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
-							</div>
-							<!-- Opens helper -->
-							<div flex ng-controller="HelpController">
-								<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
-							</div>
-						</div><!--/username and post layout -->
-					</div><!--/ChatController-->
+					</div>
 				</md-tab>
-			</md-tabs>
-			
-		</md-content><!--/md-content-->
+			</md-tabs><!--/md-tabs-->
 
+			<!-- Chat controls below -->
+			<div layout="row" layout-margin flex>
+					<!-- Assign username -->
+					<md-input-container flex="33">
+						<label for="nameInput">Username</label>
+						<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+					</md-input-container>
+				
+
+				
+					<!-- Post a message -->
+					<md-input-container flex="66">
+						<label>Message</label>
+						<textarea class="form-control" 
+								  ng-model="msg"
+								  ng-keydown="addMessage($event)" 
+								  id="messageInput"
+								  placeholder="Type a message...">
+						</textarea>
+					</md-input-container>
+				
+			</div><!--/username and post layout -->
+
+			<!-- Click to send message -->
+			<div flex>
+				<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
+			</div>
+			<!-- Modal to add or join room -->
+			<div flex ng-controller="ModalController">
+				<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
+			</div>
+			<!-- Opens helper -->
+			<div flex ng-controller="HelpController">
+				<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
+			</div>
+		</div>
 
 		<!-- Scripts -->
 		<!-- ui-router -->
