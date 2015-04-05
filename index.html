@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ng-app="myApp" class="no-js">
 	<head>
 		<title>SimpleChat</title>
@@ -40,13 +41,10 @@
 		<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
 	</head>
 	<body>
+
 		<!-- Single column (whole app) -->
 		<div layout="column" layout-fill ng-controller="RoomController">
-			<!-- Break app to two columns -->
 			<div layout="row" flex>
-
-				<!-- Left column -->
-				<div layout="column" flex="66">
 					<!-- Tabs Container -->
 					<md-tabs md-stretch-tabs md-selected="selectedIndex">
 						<!-- Individual Tab -->
@@ -74,8 +72,14 @@
 							</div>
 						</md-tab>
 					</md-tabs><!--/md-tabs-->
-					<!-- Post a message -->
-					<md-input-container layout-margin>
+				</div>
+
+				<!-- Chat controls below -->
+				<md-bottom-sheet>
+						<!-- Assign username -->
+							<label for="nameInput">Username</label>
+							<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+						<!-- Post a message -->
 						<label>Message</label>
 						<textarea class="form-control" 
 								  ng-model="msg"
@@ -83,18 +87,7 @@
 								  id="messageInput"
 								  placeholder="Type a message...">
 						</textarea>
-					</md-input-container>
-				</div>
-
-				<!-- Right column -->
-				<!-- Chat controls below -->
-				<div layout="row" layout-margin flex="33">
-						<!-- Assign username -->
-						<md-input-container flex="33">
-							<label for="nameInput">Username</label>
-							<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
-						</md-input-container>
-				</div><!--/username and post layout -->
+				</md-bottom-sheet>
 
 				<!-- Click to send message -->
 				<div flex>
@@ -108,7 +101,7 @@
 				<div flex ng-controller="HelpController">
 					<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
 				</div>
-			</div><!--/left and right columns-->
+			</div>
 		</div><!--/RoomController-->
 
 		<!-- Scripts -->
@@ -144,5 +137,6 @@
 		<script src="scripts/services/chatfactory.js"></script>
 		<script src="scripts/services/sharefactory.js"></script>
 		<script src="scripts/services/hashsetfactory.js"></script>
+
 	</body>
 </html>
