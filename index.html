@@ -40,46 +40,42 @@
 		<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
 	</head>
 	<body>
+		<!-- Single column (whole app) -->
 		<div layout="column" layout-fill ng-controller="RoomController">
-			<!-- Tabs Container -->
-			<md-tabs md-stretch-tabs md-selected="selectedIndex">
-				<!-- Individual Tab -->
-				<md-tab ng-repeat="room in roomList"
-						ng-disabled="room.disabled" 
-						label="{{room.roomName}}">
+			<!-- Break app to two columns -->
+			<div layout="row" flex>
 
-					<div ng-controller="ChatController">
-						<!-- Display messages -->
-						<div scroll-glue>
-							<md-list>
-								<md-item ng-repeat="msg in messages">
-									<md-item-content>
-										<div class="md-tile-content">
-											<div class="bubble">
-												<strong>{{msg.from}}</strong><br>
-												{{msg.body}}
-											</div>
-										</div>
-									</md-item-content>
-								</md-item>
-							</md-list>
-						</div><!--/messages-->
-					</div>
-				</md-tab>
-			</md-tabs><!--/md-tabs-->
+				<!-- Left column -->
+				<div layout="column" flex="66">
+					<!-- Tabs Container -->
+					<md-tabs md-stretch-tabs md-selected="selectedIndex">
+						<!-- Individual Tab -->
+						<md-tab ng-repeat="room in roomList"
+								ng-disabled="room.disabled" 
+								label="{{room.roomName}}">
 
-			<!-- Chat controls below -->
-			<div layout="row" layout-margin flex>
-					<!-- Assign username -->
-					<md-input-container flex="33">
-						<label for="nameInput">Username</label>
-						<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
-					</md-input-container>
-				
-
-				
+							<!-- TODO: Change to MessagesController to display messages later -->
+							<div ng-controller="ChatController">
+								<!-- Display messages -->
+								<div scroll-glue>
+									<md-list>
+										<md-item ng-repeat="msg in messages">
+											<md-item-content>
+												<div class="md-tile-content">
+													<div class="bubble">
+														<strong>{{msg.from}}</strong><br>
+														{{msg.body}}
+													</div>
+												</div>
+											</md-item-content>
+										</md-item>
+									</md-list>
+								</div><!--/messages-->
+							</div>
+						</md-tab>
+					</md-tabs><!--/md-tabs-->
 					<!-- Post a message -->
-					<md-input-container flex="66">
+					<md-input-container layout-margin>
 						<label>Message</label>
 						<textarea class="form-control" 
 								  ng-model="msg"
@@ -88,22 +84,32 @@
 								  placeholder="Type a message...">
 						</textarea>
 					</md-input-container>
-				
-			</div><!--/username and post layout -->
+				</div>
 
-			<!-- Click to send message -->
-			<div flex>
-				<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
-			</div>
-			<!-- Modal to add or join room -->
-			<div flex ng-controller="ModalController">
-				<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
-			</div>
-			<!-- Opens helper -->
-			<div flex ng-controller="HelpController">
-				<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
-			</div>
-		</div>
+				<!-- Right column -->
+				<!-- Chat controls below -->
+				<div layout="row" layout-margin flex="33">
+						<!-- Assign username -->
+						<md-input-container flex="33">
+							<label for="nameInput">Username</label>
+							<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+						</md-input-container>
+				</div><!--/username and post layout -->
+
+				<!-- Click to send message -->
+				<div flex>
+					<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
+				</div>
+				<!-- Modal to add or join room -->
+				<div flex ng-controller="ModalController">
+					<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
+				</div>
+				<!-- Opens helper -->
+				<div flex ng-controller="HelpController">
+					<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
+				</div>
+			</div><!--/left and right columns-->
+		</div><!--/RoomController-->
 
 		<!-- Scripts -->
 		<!-- ui-router -->
