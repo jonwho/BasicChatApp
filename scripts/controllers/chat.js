@@ -9,7 +9,7 @@ angular.module('myApp')
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
         
         // get the room ref
-        var roomRef = ref.child(ShareFactory.currentRoomName);
+        var roomRef = ref.child($scope.room.roomName);
 
         // users typing ref
         var usersTypingRef = roomRef.child('/users');

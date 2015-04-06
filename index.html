@@ -36,9 +36,6 @@
 		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js'></script>
 		<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
 		<script src='https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js'></script>
-
-		<!-- Scrollglue -->
-		<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
 	</head>
 	<body>
 
@@ -52,7 +49,7 @@
 							ng-disabled="room.disabled" 
 							label="{{room.roomName}}">
 
-						<div ng-controller="MessageController">
+						<div ng-controller="ChatController">
 							<!-- Display messages -->
 							<md-list>
 								<md-item ng-repeat="msg in messages">
@@ -66,13 +63,10 @@
 									</md-item-content>
 								</md-item>
 							</md-list><!--/MessageController-->
-						</div>
-					</md-tab>
-				</md-tabs><!--/tabs container-->
-			<!-- </div> -->
 
-				<!-- Chat controls below -->
-				<div ng-controller="ChatController" layout="row" layout-margin layout-wrap flex>
+							<!--  -->
+							<!-- Chat controls below -->
+				<div layout="row" layout-margin layout-wrap flex>
 					<div flex="33">
 						<!-- Assign username -->
 						<label for="nameInput">Username</label>
@@ -102,6 +96,12 @@
 					<div ng-controller="HelpController">
 						<a class="pull-right" ng-click="open()" ng-href="">Need help?</a>
 					</div>
+						</div>
+					</md-tab>
+				</md-tabs><!--/tabs container-->
+			<!-- </div> -->
+
+				
 		</div><!--/RoomController-->
 
 		<!-- Scripts -->
