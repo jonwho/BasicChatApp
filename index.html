@@ -39,67 +39,63 @@
 
 		<!-- Single column (whole app) -->
 		<div layout="column" ng-controller="RoomController">
-			<!-- <div layout="row"> -->
-				<!-- Tabs Container -->
-				<md-tabs md-stretch-tabs md-selected="selectedIndex">
-					<!-- Individual Tab -->
-					<md-tab ng-repeat="room in roomList"
-							ng-disabled="room.disabled" 
-							label="{{room.roomName}}">
+			<!-- Tabs Container -->
+			<md-tabs md-stretch-tabs md-selected="selectedIndex">
+				<!-- Individual Tab -->
+				<md-tab ng-repeat="room in roomList"
+						ng-disabled="room.disabled" 
+						label="{{room.roomName}}">
 
-						<div ng-controller="ChatController">
-							<!-- Display messages -->
-							<md-list>
-								<md-item ng-repeat="msg in messages">
-									<md-item-content>
-										<div class="md-tile-content">
-											<div class="bubble">
-												<strong>{{msg.from}}</strong><br>
-												{{msg.body}}
-											</div>
+					<div ng-controller="ChatController">
+						<!-- Display messages -->
+						<md-list>
+							<md-item ng-repeat="msg in messages">
+								<md-item-content>
+									<div class="md-tile-content">
+										<div class="bubble">
+											<strong>{{msg.from}}</strong><br>
+											{{msg.body}}
 										</div>
-									</md-item-content>
-								</md-item>
-							</md-list><!--/MessageController-->
+									</div>
+								</md-item-content>
+							</md-item>
+						</md-list><!--/DisplayMessages-->
 
-							<!--  -->
-							<!-- Chat controls below -->
-				<div layout="row" layout-margin layout-wrap flex>
-					<div flex="33">
-						<!-- Assign username -->
-						<label for="nameInput">Username</label>
-						<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
-					</div>
-					<div flex="66">
-						<!-- Post a message -->
-						<label>Message</label>
-						<textarea class="form-control" 
-								  ng-model="msg"
-								  ng-keydown="addMessage($event)" 
-								  id="messageInput"
-								  placeholder="Type a message...">
-						</textarea>
-					</div>
+						<!-- Chat controls -->
+						<div layout="row" layout-margin layout-wrap>
+							<div flex="33">
+								<!-- Assign username -->
+								<label for="nameInput">Username</label>
+								<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+							</div>
+							<div flex="95">
+								<!-- Post a message -->
+								<label>Message</label>
+								<textarea class="form-control" 
+										  ng-model="msg"
+										  ng-keydown="addMessage($event)" 
+										  id="messageInput"
+										  placeholder="Type a message...">
+								</textarea>
+							</div>
 
-					<!-- Click to send message -->
-					<button class="btn btn-primary" ng-click="sendMessage()">Send</button>
-					
-					
-				</div>
-				<!-- Modal to add or join room -->
-					<div ng-controller="ModalController">
-						<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
-					</div>
-					<!-- Opens helper -->
-					<div ng-controller="HelpController">
-						<a class="pull-right" ng-click="open()" ng-href="">Need help?</a>
-					</div>
-						</div>
-					</md-tab>
-				</md-tabs><!--/tabs container-->
-			<!-- </div> -->
-
-				
+							<div layout="row" layout-sm="column" layout-margin layout-fill layout-align="start end">
+								<!-- Click to send message -->
+								<div flex>
+									<md-button class="md-raised md-primary pull-left" ng-click="sendMessage()">Send</md-button>
+								</div>
+								<!-- Modal to add or join room -->
+								<div flex ng-controller="ModalController">
+									<md-button class="md-raised md-primary pull-left" ng-click="open()">Add or Join Room</md-button>
+								</div>
+								<!-- Opens helper -->
+								<div flex ng-controller="HelpController">
+									<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
+								</div>
+							</div>
+					</div><!--/ChatController-->
+				</md-tab>
+			</md-tabs><!--/tabs container-->
 		</div><!--/RoomController-->
 
 		<!-- Scripts -->
