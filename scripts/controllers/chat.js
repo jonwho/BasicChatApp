@@ -9,14 +9,12 @@ angular.module('myApp')
         var ref = new Firebase('https://playwithfire.firebaseIO.com/room');
         
         // get the room ref
-        var roomRef = ref.child($scope.room.roomName);
+        var roomRef = ref.child(ShareFactory.currentRoomName);
 
         // users typing ref
         var usersTypingRef = roomRef.child('/users');
         var typeSync = $firebase(usersTypingRef);
         var typeSyncObject = typeSync.$asObject();
-
-        //$scope.hashSet = ShareFactory.HashSet;
 
         // sync to a scope var $scope.hashSet
         typeSyncObject.$bindTo($scope, "hashSet.set");

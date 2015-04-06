@@ -11,6 +11,8 @@ angular.module('myApp')
 			{roomName : 'Demo 2'}
 		];
 
+		sharing.currentRoomName = 'Demo';
+
 		sharing.HashSet = HashSetFactory;
 
 		return sharing;

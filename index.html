@@ -43,42 +43,42 @@
 	<body>
 
 		<!-- Single column (whole app) -->
-		<div layout="column" layout-fill ng-controller="RoomController">
-			<div layout="row" flex>
-					<!-- Tabs Container -->
-					<md-tabs md-stretch-tabs md-selected="selectedIndex">
-						<!-- Individual Tab -->
-						<md-tab ng-repeat="room in roomList"
-								ng-disabled="room.disabled" 
-								label="{{room.roomName}}">
+		<div layout="column" ng-controller="RoomController">
+			<!-- <div layout="row"> -->
+				<!-- Tabs Container -->
+				<md-tabs md-stretch-tabs md-selected="selectedIndex">
+					<!-- Individual Tab -->
+					<md-tab ng-repeat="room in roomList"
+							ng-disabled="room.disabled" 
+							label="{{room.roomName}}">
 
-							<!-- TODO: Change to MessagesController to display messages later -->
-							<div ng-controller="ChatController">
-								<!-- Display messages -->
-								<div scroll-glue>
-									<md-list>
-										<md-item ng-repeat="msg in messages">
-											<md-item-content>
-												<div class="md-tile-content">
-													<div class="bubble">
-														<strong>{{msg.from}}</strong><br>
-														{{msg.body}}
-													</div>
-												</div>
-											</md-item-content>
-										</md-item>
-									</md-list>
-								</div><!--/messages-->
-							</div>
-						</md-tab>
-					</md-tabs><!--/md-tabs-->
-				</div>
+						<div ng-controller="MessageController">
+							<!-- Display messages -->
+							<md-list>
+								<md-item ng-repeat="msg in messages">
+									<md-item-content>
+										<div class="md-tile-content">
+											<div class="bubble">
+												<strong>{{msg.from}}</strong><br>
+												{{msg.body}}
+											</div>
+										</div>
+									</md-item-content>
+								</md-item>
+							</md-list><!--/MessageController-->
+						</div>
+					</md-tab>
+				</md-tabs><!--/tabs container-->
+			<!-- </div> -->
 
 				<!-- Chat controls below -->
-				<md-bottom-sheet>
+				<div ng-controller="ChatController" layout="row" layout-margin layout-wrap flex>
+					<div flex="33">
 						<!-- Assign username -->
-							<label for="nameInput">Username</label>
-							<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+						<label for="nameInput">Username</label>
+						<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+					</div>
+					<div flex="66">
 						<!-- Post a message -->
 						<label>Message</label>
 						<textarea class="form-control" 
@@ -87,21 +87,21 @@
 								  id="messageInput"
 								  placeholder="Type a message...">
 						</textarea>
-				</md-bottom-sheet>
+					</div>
 
-				<!-- Click to send message -->
-				<div flex>
-					<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
+					<!-- Click to send message -->
+					<button class="btn btn-primary" ng-click="sendMessage()">Send</button>
+					
+					
 				</div>
 				<!-- Modal to add or join room -->
-				<div flex ng-controller="ModalController">
-					<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
-				</div>
-				<!-- Opens helper -->
-				<div flex ng-controller="HelpController">
-					<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
-				</div>
-			</div>
+					<div ng-controller="ModalController">
+						<button class="btn btn-primary" ng-click="open()">Add or Join Room</button>
+					</div>
+					<!-- Opens helper -->
+					<div ng-controller="HelpController">
+						<a class="pull-right" ng-click="open()" ng-href="">Need help?</a>
+					</div>
 		</div><!--/RoomController-->
 
 		<!-- Scripts -->
@@ -132,6 +132,7 @@
 		<script src="scripts/controllers/modal.js"></script>
 		<script src="scripts/controllers/modalinstance.js"></script>
 		<script src="scripts/controllers/help.js"></script>
+		<script src="scripts/controllers/message.js"></script>
 
 		<!-- services -->
 		<script src="scripts/services/chatfactory.js"></script>
