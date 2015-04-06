@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('myApp')
-	.controller('ModalController', function($scope, $modal, ChatFactory, ShareFactory) {
+	.controller('ModalController', function($rootScope, $scope, $modal, ChatFactory, ShareFactory) {
 		$scope.open = function () {
 			var modalInstance = $modal.open({
 				templateUrl: 'views/modal.html',
@@ -23,12 +23,12 @@ angular.module('myApp')
 					}
 				}
 
-				if(!found)
+				if(!found) {
 					ShareFactory.roomList.push({ roomName : name, disabled : false });
+				}
 				else {
 					ShareFactory.roomList[index].disabled = false;
 				}
-
 			}, function () {
 				console.log('cancel');
 			});
