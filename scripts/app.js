@@ -7,6 +7,5 @@
  		'ngTouch',
  		'ui.router',
  		'ui.bootstrap',
- 		'firebase',
- 		'luegg.directives'
+ 		'firebase'
  	]);

@@ -16,8 +16,6 @@ angular.module('myApp')
         var typeSync = $firebase(usersTypingRef);
         var typeSyncObject = typeSync.$asObject();
 
-        //$scope.hashSet = ShareFactory.HashSet;
-
         // sync to a scope var $scope.hashSet
         typeSyncObject.$bindTo($scope, "hashSet.set");
         
@@ -26,12 +24,8 @@ angular.module('myApp')
         
         // for keyboard input
         $scope.addMessage = function (e) {
-            if (e.keyCode === 13 && $scope.msg) {
-                var name = $scope.name || 'anonymous';
-                
-                $scope.messages.$add({from: name, body: $scope.msg});
-                
-                $scope.msg = '';
+            if (e.keyCode === 13) {
+                $scope.sendMessage();
             }
         }
 

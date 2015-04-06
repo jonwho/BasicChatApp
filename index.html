@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ng-app="myApp" class="no-js">
 	<head>
 		<title>SimpleChat</title>
@@ -21,8 +22,6 @@
 		<link rel="stylesheet" href="styles/modal.css">
 		<!-- Chat CSS -->
 		<link rel="stylesheet" href="styles/chat.css">
-		<!-- Scroll CSS -->
-		<link rel="stylesheet" href="styles/scroll.css">
 		<!-- Material Design CSS -->
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.css">
 		<!-- Overwrite MD CSS -->
@@ -35,12 +34,11 @@
 		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js'></script>
 		<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
 		<script src='https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js'></script>
-
-		<!-- Scrollglue -->
-		<script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
 	</head>
 	<body>
-		<div layout="column" layout-fill ng-controller="RoomController">
+
+		<!-- Single column (whole app) -->
+		<div layout="column" ng-controller="RoomController">
 			<!-- Tabs Container -->
 			<md-tabs md-stretch-tabs md-selected="selectedIndex">
 				<!-- Individual Tab -->
@@ -50,60 +48,55 @@
 
 					<div ng-controller="ChatController">
 						<!-- Display messages -->
-						<div scroll-glue>
-							<md-list>
-								<md-item ng-repeat="msg in messages">
-									<md-item-content>
-										<div class="md-tile-content">
-											<div class="bubble">
-												<strong>{{msg.from}}</strong><br>
-												{{msg.body}}
-											</div>
+						<md-list>
+							<md-item ng-repeat="msg in messages">
+								<md-item-content>
+									<div class="md-tile-content">
+										<div class="bubble">
+											<strong>{{msg.from}}</strong><br>
+											{{msg.body}}
 										</div>
-									</md-item-content>
-								</md-item>
-							</md-list>
-						</div><!--/messages-->
-					</div>
+									</div>
+								</md-item-content>
+							</md-item>
+						</md-list><!--/DisplayMessages-->
+
+						<!-- Chat controls -->
+						<div layout="row" layout-margin layout-wrap>
+							<div flex="33">
+								<!-- Assign username -->
+								<label for="nameInput">Username</label>
+								<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
+							</div>
+							<div flex="95">
+								<!-- Post a message -->
+								<label>Message</label>
+								<textarea class="form-control" 
+										  ng-model="msg"
+										  ng-keydown="addMessage($event)" 
+										  id="messageInput"
+										  placeholder="Type a message...">
+								</textarea>
+							</div>
+
+							<div layout="row" layout-sm="column" layout-margin layout-fill layout-align="start end">
+								<!-- Click to send message -->
+								<div flex>
+									<md-button class="md-raised md-primary pull-left" ng-click="sendMessage()">Send</md-button>
+								</div>
+								<!-- Modal to add or join room -->
+								<div flex ng-controller="ModalController">
+									<md-button class="md-raised md-primary pull-left" ng-click="open()">Add or Join Room</md-button>
+								</div>
+								<!-- Opens helper -->
+								<div flex ng-controller="HelpController">
+									<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
+								</div>
+							</div>
+					</div><!--/ChatController-->
 				</md-tab>
-			</md-tabs><!--/md-tabs-->
-
-			<!-- Chat controls below -->
-			<div layout="row" layout-margin flex>
-					<!-- Assign username -->
-					<md-input-container flex="33">
-						<label for="nameInput">Username</label>
-						<input ng-model="name" type="text" id="nameInput" placeholder="Enter a username...">
-					</md-input-container>
-				
-
-				
-					<!-- Post a message -->
-					<md-input-container flex="66">
-						<label>Message</label>
-						<textarea class="form-control" 
-								  ng-model="msg"
-								  ng-keydown="addMessage($event)" 
-								  id="messageInput"
-								  placeholder="Type a message...">
-						</textarea>
-					</md-input-container>
-				
-			</div><!--/username and post layout -->
-
-			<!-- Click to send message -->
-			<div flex>
-				<md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
-			</div>
-			<!-- Modal to add or join room -->
-			<div flex ng-controller="ModalController">
-				<md-button class="md-raised md-primary" ng-click="open()">Add or Join Room</md-button>
-			</div>
-			<!-- Opens helper -->
-			<div flex ng-controller="HelpController">
-				<md-button class="pull-right" ng-click="open()" ng-href="">Need help?</md-button>
-			</div>
-		</div>
+			</md-tabs><!--/tabs container-->
+		</div><!--/RoomController-->
 
 		<!-- Scripts -->
 		<!-- ui-router -->
@@ -138,5 +131,6 @@
 		<script src="scripts/services/chatfactory.js"></script>
 		<script src="scripts/services/sharefactory.js"></script>
 		<script src="scripts/services/hashsetfactory.js"></script>
+
 	</body>
 </html>

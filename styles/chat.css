@@ -28,13 +28,3 @@
 		color-stop(1, rgb(149,194,253))
 	);
 }
-
-.form-control {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.align-fix {
-	float: none;
-	clear: both;
-}
