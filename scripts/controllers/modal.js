@@ -24,11 +24,17 @@ angular.module('myApp')
 				}
 
 				if(!found) {
-					ShareFactory.roomList.push({ roomName : name, disabled : false });
+					ShareFactory.roomList.push({ roomName : name});
+					index = ShareFactory.roomList.length - 1;
 				}
 				else {
-					ShareFactory.roomList[index].disabled = false;
+					// don't care about disabled, not a feature i want to use
+					//ShareFactory.roomList[index].disabled = false;
 				}
+
+				// Broadcast event to all children of rootScope
+				// namely want RoomController to listen for this change
+				$rootScope.$broadcast('RoomChange', index);
 			}, function () {
 				console.log('cancel');
 			});
