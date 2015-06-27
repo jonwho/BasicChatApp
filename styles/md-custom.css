@@ -1,3 +1,8 @@
 /*.md-tabs-content {
 	height: 100%;
 }*/
+
+/* prevent Angular template from being shown */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
